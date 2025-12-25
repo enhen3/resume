@@ -1,0 +1,55 @@
+# Site settings
+title: "史昊阳 | 简历"
+description: "建筑师出身的 AI 产品经理"
+
+# Build settings
+markdown: kramdown
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Resume settings
+resume_avatar:                  "false"
+resume_name:                    "史昊阳"
+resume_title:                   "AI 产品经理 / 建筑师"
+
+# used for the contact button in _layouts/resume.html
+resume_contact_email:           "shihaoyang33@outlook.com"
+
+# the next two items are used for schema itemprops in _layouts/resume.html
+resume_contact_telephone:       "18506911336"
+resume_contact_address:         ""
+
+resume_header_contact_info:     "18506911336 • shihaoyang33@outlook.com"
+display_header_contact_info:    "true"
+
+resume_header_intro: "<p>我是建筑师出身的 AI 产品经理，曾就职于扎哈·哈迪德建筑事务所，热爱科技和参数化设计。就职期间参与大型建筑和室内设计的全流程，在其中负责建筑设计、并与各方沟通协调推进项目落地。在研究生阶段设计了一套基于 Agent 的去中心化补充医疗系统，该项目激发了我对于 AI 的兴趣和热情。在成为 AI 产品经理后，凭借着兴趣和自学能力独自从 0 到 1 交付了一款 ArchiCAD AI 合规插件，用于建筑设计提效；独自 0-1 开发上线“夜梦录”网站，为用户从心理学角度提供长期的梦境的 AI 解读和陪伴。</p>"
+
+# use "yes" to display the email contact button,
+# "no" to display an "I'm not looking for work" message,
+# or remove the resume_looking_for_work option entirely
+# to leave blank
+resume_looking_for_work:        "yes"
+
+# Decide which sections to use
+# comment out to hide
+resume_section_experience:      true
+resume_section_education:       true
+resume_section_projects:        true
+resume_section_skills:          false
+resume_section_recognition:     false
+resume_section_links:           false
+resume_section_associations:    false
+# resume_section_interests:       true
+
+# Resume social links
+# uncomment the options you wish to display, and add your own URL
+resume_social_links:            null
+resume_print_social_links:      false
+
+# Design settings
+resume_theme:                   default
+
+# Note: when editing locally, remember to restart
+# your Jekyll server when you edit this file. Changes
+# to _config.yml are only recognized when the server starts
