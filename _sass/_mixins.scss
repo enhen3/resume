@@ -51,7 +51,11 @@
 // type utilities
 
 @mixin sans {
-  font-family: $body-font;
+  font-family: $text-font;
+}
+
+@mixin display {
+  font-family: $display-font;
 }
 
 @mixin sans_light {

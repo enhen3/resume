@@ -27,10 +27,12 @@ body{
   @include sans;
   color: var(--text);
   font-size: $body-font-size;
-  line-height: 1.7;
-  letter-spacing: -0.01em;
+  line-height: 1.68;
+  letter-spacing: -0.008em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-kerning: normal;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   background:
     radial-gradient(1200px 600px at 85% -10%, rgba(0, 122, 255, 0.14), transparent 60%),
     radial-gradient(900px 500px at 5% -20%, rgba(94, 92, 230, 0.08), transparent 55%),
