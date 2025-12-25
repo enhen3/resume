@@ -1,76 +1,132 @@
 // Resume styles
 // ---------------------------------------/
 
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 // util
 
 .section-header {
-  @include section_border;
   margin-bottom: 1.5rem;
 
   h2 {
     @include sans;
-    font-weight: 900;
-    font-size: 1.75rem;
-    letter-spacing: -.05rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
     margin: 0;
+    color: var(--text-muted);
   }
 }
 
 // page header styles
 
-.page-header { padding: 1.5rem 0;
+.page-header {
+  position: relative;
+  padding: 52px 44px 36px;
+  margin: 24px 0 36px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  @include border-radius(28px);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  animation: rise 0.9s ease-out both;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(600px 240px at 90% 0%, rgba(0, 122, 255, 0.14), transparent 60%),
+      radial-gradient(520px 220px at 0% 10%, rgba(255, 149, 0, 0.08), transparent 55%);
+    pointer-events: none;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
 
   .avatar {
-    width: 95px;
+    width: 96px;
     max-width: 100%;
     overflow: hidden;
     @include border-radius(100px);
-    margin: 0 auto;
+    margin: 0 0 20px;
     display: block;
   }
 
   .header-name {
     @include sans;
-    font-size: 3rem;
-    font-weight: 900;
-    text-align: center;
-    letter-spacing: -.15rem;
-    line-height: 1;
-    margin: 1rem 0 0;
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin: 0 0 0.4rem;
   }
 
   .header-contact-info {
     @include sans;
-    text-align: center;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+
+    p {
+      margin: 0;
+    }
   }
+
   .header-contact-info p a {
     color: inherit;
   }
 
   .title-bar {
-    @include section_border;
-    margin-top: 2rem;
-    padding: .4rem 0;
-    @include clearfix;
+    margin-top: 20px;
+    padding: 0;
+    border: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    justify-content: space-between;
+  }
 
-    .header-title {
-      @include sans;
-      font-weight: 300;
-      font-size: 1.75rem;
-      line-height: 2rem;
-      letter-spacing: -.05rem;
-      text-align: center;
-      margin: 0 0 .5rem;
-
-      @include media_larger_than_mobile {
-        float: left;
-        margin: 0;
-      }
-    }
+  .header-title {
+    @include sans;
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--text-muted);
   }
 
   .executive-summary {
-    @include media_larger_than_mobile { font-size: 1.125rem; }
+    margin-top: 20px;
+    font-size: 1.05rem;
+    color: var(--text);
+    max-width: 70ch;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+@supports ((-webkit-backdrop-filter: blur(16px)) or (backdrop-filter: blur(16px))) {
+  .page-header {
+    background: rgba(255, 255, 255, 0.72);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
   }
 }
 
@@ -78,81 +134,89 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  position: relative;
-  top: 4px;
-  text-align: center;
-  border-top: 2px solid #c7c7c7;
-  padding-top: .4rem;
-
-  @include media_larger_than_mobile {
-    float: right;
-    border-top: none;
-    padding-top: 0;
-  }
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border-top: none;
+  position: static;
 
   .icon-link-item {
-    display: inline-block;
-    margin-left: 5px;
+    display: inline-flex;
   }
 
-  .icon-link { display: inline-block;
+  .icon-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--text-muted);
+    @include transition(color .2s ease);
 
-    &:hover .icon path {
-      fill: #333;
-      @include transition(all .2s ease);
+    &:hover {
+      color: var(--text);
     }
   }
 
   .icon {
-    height: 28px;
+    height: 22px;
+    width: 22px;
+
+    path {
+      fill: currentColor;
+    }
   }
-}
-
-.contact-button {
-  @include border-radius(3px);
-  background-color: #efefef;
-  text-decoration: none;
-  text-align: center;
-  display: block;
-  margin: 1.5rem auto;
-  width: 220px;
-  font-size: 1.375rem;
-  @include sans_light;
-  color: #333;
-  line-height: 55px;
-  @include transition(all .2s ease);
-
-  &:hover {
-    background-color: #333;
-    color: #fff;
-  }
-
-  &.not-looking { width: 400px; }
 }
 
 // resume content styles
 
 .content-section {
-  margin: 0 0 3rem;
+  margin: 0 0 28px;
+  padding: 28px 32px;
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  @include border-radius(24px);
+  box-shadow: var(--shadow-soft);
+  animation: rise 0.9s ease-out both;
 
-  .resume-item { margin-bottom: 2rem; }
+  .resume-item {
+    margin: 0;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .resume-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
 
   .resume-item-title {
-    @include sans_bold;
-    margin: 0 0 .75rem;
-    font-size: 1.5rem;
-    letter-spacing: -.05rem;
-    line-height: 1;
+    @include sans;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+    font-size: 1.2rem;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
   }
 
   .resume-item-details {
-    font-size: 1.125rem;
-    margin: 0 0 .75rem;
-    line-height: 1;
+    font-size: 0.95rem;
+    margin: 0 0 0.5rem;
+    line-height: 1.4;
+    color: var(--text-muted);
+    font-weight: 500;
 
     &.award-title {
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
+  }
+
+  .resume-item-copy {
+    margin: 0.5rem 0 0;
+    color: var(--text);
+  }
+
+  .resume-item-list {
+    margin: 0.5rem 0 0 1.1rem;
+    padding: 0;
+    color: var(--text);
   }
 
   .resume-item-title,
@@ -160,75 +224,86 @@
   .resume-item-copy,
   .resume-item-list {
     a {
-      color: #333;
+      color: var(--text);
       text-decoration: none;
-      border-bottom: 1px solid;
+      border-bottom: 1px solid rgba(29, 29, 31, 0.2);
 
       &:hover {
-        border-bottom: none;
-        color: #9c9c9c;
+        border-bottom-color: transparent;
+        color: var(--accent);
       }
     }
   }
-
-  .resume-item-copy { margin: .75rem 0 0; }
 }
 
-// footer styles
-
-.page-footer {
-  border-top: 4px solid #c7c7c7;
-  padding-top: 1.5rem;
-  text-align: center;
-  margin-bottom: 3rem;
-
-  .footer-line {
-    margin: 0;
-    font-size: .875rem;
-    color: #999;
-
-    > a {
-      font-weight: 700;
-      color: #333;
-    }
-  }
-}
+section.content-section:nth-of-type(1) { animation-delay: .05s; }
+section.content-section:nth-of-type(2) { animation-delay: .12s; }
+section.content-section:nth-of-type(3) { animation-delay: .18s; }
+section.content-section:nth-of-type(4) { animation-delay: .24s; }
+section.content-section:nth-of-type(5) { animation-delay: .3s; }
 
 .print-only { display: none !important }
+
+@media (max-width: 700px) {
+  .page-header {
+    padding: 36px 24px 28px;
+  }
+
+  .page-header .title-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .content-section {
+    padding: 24px 20px;
+  }
+}
 
 @media print {
   .no-print { display: none !important }
   .print-only { display: block !important }
-  body { font-size: 12px; line-height: 1rem; }
-  .page-header { padding: 1rem 0 .2rem;
-    .header-name {
-      @include sans_bold;
-      font-size: 2rem;
-      margin: 0 0 .2rem;
+  * {
+    color: #111 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .page-header {
+    padding: 1rem 0 .2rem;
+    margin: 0 0 1rem;
+    border: none;
+  }
+
+  .section-header {
+    margin-bottom: 0.8rem;
+
+    h2 {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
     }
   }
-  .section-header {
-    @include section_border_thin;
-    margin-bottom: 1rem;
-    h2 { font-size: 1.2rem; line-height: 1.5rem; }
-  }
+
   .content-section {
     margin: 0 0 1rem;
-    .resume-item { margin-bottom: 1rem; }
-    .resume-item-title {
-      font-size: 16px;
-      line-height: .7em;
-    }
+    padding: 0;
+    border: none;
 
-    .resume-item-details {
-      font-size: 12px;
-      margin: 0 0 .75rem;
-      line-height: .7em;
-      font-style:italic;
-
-      &.award-title {
-        font-size: 11px;
-      }
+    .resume-item {
+      padding: 0.4rem 0;
+      border-bottom: 1px solid #d0d0d0;
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-header,
+  .content-section {
+    animation: none;
   }
 }

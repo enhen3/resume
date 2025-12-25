@@ -1,5 +1,18 @@
 // Base styles
 // ---------------------------------------/
+:root {
+  --bg: #f5f6f7;
+  --surface: rgba(255, 255, 255, 0.82);
+  --surface-strong: #ffffff;
+  --border: rgba(29, 29, 31, 0.12);
+  --text: #1d1d1f;
+  --text-muted: #6e6e73;
+  --accent: #007aff;
+  --accent-ink: #0051a8;
+  --shadow: 0 30px 80px rgba(15, 23, 42, 0.12);
+  --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -7,22 +20,30 @@
 }
 
 html {
-  background: $white;
+  background: var(--bg);
 }
 
 body{
-  @include serif;
-  color: $text_color;
-  font-size: 16px;
-  line-height: 1.5;
+  @include sans;
+  color: var(--text);
+  font-size: $body-font-size;
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background:
+    radial-gradient(1200px 600px at 85% -10%, rgba(0, 122, 255, 0.14), transparent 60%),
+    radial-gradient(900px 500px at 5% -20%, rgba(94, 92, 230, 0.08), transparent 55%),
+    linear-gradient(180deg, #f7f8f9 0%, #ffffff 45%, #f3f4f6 100%);
+  background-attachment: fixed;
 }
 
 .wrapper:before,
 .wrapper:after { content:""; display:table; }
 .wrapper:after { clear: both; }
 .wrapper {
-  max-width: 728px;
-  padding: 0 24px;
+  max-width: 980px;
+  padding: 32px 24px 96px;
   margin: 0 auto;
   zoom: 1;
 }
@@ -35,12 +56,23 @@ body{
 .group { zoom:1; /* For IE 6/7 (trigger hasLayout) */ }
 
 ::-moz-selection {
-    background: rgba(51,51,51,.8);
-    color: #fff;
-    text-shadow: none;
+  background: rgba(0, 122, 255, 0.2);
+  color: #0b0b0c;
+  text-shadow: none;
 }
 ::selection {
-    background: rgba(51,51,51,.8);
-    color: #fff;
-    text-shadow: none;
+  background: rgba(0, 122, 255, 0.2);
+  color: #0b0b0c;
+  text-shadow: none;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+
+  &:hover {
+    color: var(--accent-ink);
+  }
 }

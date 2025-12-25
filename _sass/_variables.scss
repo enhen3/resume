@@ -2,20 +2,20 @@
 // ---------------------------------------/
 
 $container-width: 980px !default;
-$grid-gutter:     10px !default;
+$grid-gutter:     12px !default;
 
 // Colors
 $white:             #fff;
-$black:             #333;
+$black:             #1d1d1f;
 
 // Styles
 $text_color:        $black;
 
 // Font stack
-$body-font: Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$body-font: "SF Pro Text", "SF Pro Display", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif !default;
 
 // The base body size
-$body-font-size: 13px !default;
+$body-font-size: 16px !default;
 
 // Monospace font stack
-$mono-font: Consolas, "Liberation Mono", Menlo, Courier, monospace !default;
+$mono-font: "SF Mono", Menlo, Consolas, "Liberation Mono", Courier, monospace !default;
