@@ -257,6 +257,14 @@
     font-size: 0.98rem;
     letter-spacing: -0.004em;
     line-height: 1.75;
+
+    p {
+      margin: 0 0 0.9rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
   }
 
   .resume-item-list {

@@ -41,27 +41,6 @@
 
       </header>
 
-      {% if site.resume_section_experience %}
-      <!-- begin Experience -->
-      <section class="content-section">
-
-        <header class="section-header">
-          <h2>工作经历</h2>
-        </header>
-
-        {% for job in site.data.experience %}
-        <div class="resume-item" itemscope itemprop="worksFor" itemtype="http://schema.org/Organization">
-          <h3 class="resume-item-title" itemprop="name">{{ job.company }}</h3>
-          <h4 class="resume-item-details" itemprop="description">{{ job.position }} &bull; {{ job.duration }}</h4>
-          <p class="resume-item-copy">{{ job.summary }}</p>
-        </div><!-- end of resume-item -->
-        {% endfor %}
-
-      </section>
-      <!-- end Experience -->
-      {% endif %}
-
-
       {% if site.resume_section_education %}
       <!-- begin Education -->
       <section class="content-section">
@@ -72,7 +51,9 @@
         {% for education in site.data.education %}
         <div class="resume-item" itemscope itemprop="alumniOf" itemtype="http://schema.org/CollegeOrUniversity">
           <h3 class="resume-item-title" itemprop="name">{{ education.uni }}</h3>
-          <h4 class="resume-item-details group" itemprop="description">{{ education.degree }} &bull; {{ education.year }}</h4>
+          {% if education.degree or education.year %}
+          <h4 class="resume-item-details group" itemprop="description">{% if education.degree %}{{ education.degree }}{% endif %}{% if education.degree and education.year %} | {% endif %}{% if education.year %}{{ education.year }}{% endif %}</h4>
+          {% endif %}
           {% if education.award %}
           <h5 class="resume-item-details award-title" itemprop="description">{{ education.award }}</h5>
           {% endif %}
@@ -90,6 +71,37 @@
         {% endfor %}
       </section>
       <!-- end Education -->
+      {% endif %}
+
+
+      {% if site.resume_section_experience %}
+      <!-- begin Experience -->
+      <section class="content-section">
+
+        <header class="section-header">
+          <h2>工作经历</h2>
+        </header>
+
+        {% for job in site.data.experience %}
+        <div class="resume-item" itemscope itemprop="worksFor" itemtype="http://schema.org/Organization">
+          {% if job.line %}
+          <h3 class="resume-item-title" itemprop="name">{{ job.line }}</h3>
+          {% else %}
+          <h3 class="resume-item-title" itemprop="name">{{ job.company }}</h3>
+          {% if job.position or job.duration %}
+          <h4 class="resume-item-details" itemprop="description">{% if job.position %}{{ job.position }}{% endif %}{% if job.position and job.duration %} | {% endif %}{% if job.duration %}{{ job.duration }}{% endif %}</h4>
+          {% endif %}
+          {% endif %}
+          {% if job.summary %}
+          <ul class="resume-item-list">
+            <li>{{ job.summary }}</li>
+          </ul>
+          {% endif %}
+        </div><!-- end of resume-item -->
+        {% endfor %}
+
+      </section>
+      <!-- end Experience -->
       {% endif %}
 
 
@@ -111,7 +123,7 @@
           {% elsif project.duration %}
           <h4 class="resume-item-details" itemprop="description">{{ project.duration }}</h4>
           {% endif %}
-          <p class="resume-item-copy">{{ project.description }}</p>
+          <div class="resume-item-copy">{{ project.description | markdownify }}</div>
         </div>
         {% endfor %}
 
